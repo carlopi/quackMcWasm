@@ -40,10 +40,10 @@ jobs:
         cd duckdb-wasm
         ls submodules/duckdb/extensions
         WASM_LOADABLE_EXTENSIONS=1 ./scripts/wasm_build_lib.sh relsize eh
-        emcc build/relsize/eh/third_party/duckdb/src/duckdb_ep-build/extension/${{ github.event.repository.name }}/${{ extension-name }}.duckdb_extension -o ../${{ extension-name }}.extension.wasm -sSIDE_MODULE
+        emcc build/relsize/eh/third_party/duckdb/src/duckdb_ep-build/extension/${{ github.event.repository.name }}/${{ env.extension-name }}.duckdb_extension -o ../${{ env.extension-name }}.extension.wasm -sSIDE_MODULE
         
     - uses: actions/upload-artifact@v3
       with:
         name: Extension
         path: |
-          ${{ extension-name }}.extension.wasm
+          ${{ env.extension-name }}.extension.wasm
