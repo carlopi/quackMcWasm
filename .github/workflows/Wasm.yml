@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        path: 'duckdb-wasm/submodules/duckdb/extensions/'
+        path: 'duckdb-wasm/submodules/duckdb/extensions/${{ github.event.repository.name }}'
 
     - name: Setup Ccache
       uses: hendrikmuhs/ccache-action@main
@@ -37,7 +37,7 @@ jobs:
       shell: bash
       run: |
         cd duckdb-wasm
-        ls submodules/duckdb/extensions
+        ls submodules/duckdb/extensions/${{ github.event.repository.name }}
         WASM_LOADABLE_EXTENSIONS=1 ./scripts/wasm_build_lib.sh relsize eh
         emcc build/relsize/eh/third_party/duckdb/src/duckdb_ep-build/extension/${{ github.event.repository.name }}/${{ env.extension-name }}.duckdb_extension -o ../${{ env.extension-name }}.extension.wasm -sSIDE_MODULE
         
