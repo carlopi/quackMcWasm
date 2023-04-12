@@ -2,11 +2,11 @@ name: Build and Deploy
 on: [push]
 permissions:
   contents: write
+env:
+  extension-name: 'quack'
 defaults:
   run:
     shell: bash
-  env:
-    extension-name: 'quack'
 jobs:
   duckdb-wasm-extension:
     name: Experimental build for duckdb-wasm extension
