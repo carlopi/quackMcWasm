@@ -31,15 +31,16 @@ jobs:
     - name: Setup Ccache
       uses: hendrikmuhs/ccache-action@main
       with:
-        key: ${{ github.job }} 
+        key: ${{ github.job }}-3
 
     - name: Build WebAssembly
       shell: bash
       run: |
         cd duckdb-wasm
         ls submodules/duckdb/extension/*
-        WASM_LOADABLE_EXTENSIONS=1 GEN=ninja ./scripts/wasm_build_lib.sh relsize eh
+        WASM_LOADABLE_EXTENSIONS=1 ./scripts/wasm_build_lib.sh relsize eh
         ls build/relsize/eh/third_party/duckdb/src/duckdb_ep-build
+	echo "ciao"
         ls build/relsize/eh/third_party/duckdb/src/duckdb_ep-build/extension
         emcc build/relsize/eh/third_party/duckdb/src/duckdb_ep-build/extension/${{ github.event.repository.name }}/${{ env.extension-name }}.duckdb_extension -o ../${{ env.extension-name }}.extension.wasm -sSIDE_MODULE
         
