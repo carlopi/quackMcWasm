@@ -6,7 +6,7 @@ defaults:
   run:
     shell: bash
 jobs:
-  duckd-wasm-extension:
+  duckdb-wasm-extension:
     name: Experimental build for duckdb-wasm extension
     runs-on: ubuntu-22.04
     env:
@@ -47,6 +47,8 @@ jobs:
 
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    needs:
+      - duckdb-wasm-extension
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
