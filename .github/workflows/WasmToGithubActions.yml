@@ -37,7 +37,7 @@ jobs:
       shell: bash
       run: |
         cd duckdb-wasm
-        cp README.md  ../${{ env.extension-name }}.extension.wasm -sSIDE_MODULE
+        cp README.md ../${{ env.extension-name }}.extension.wasm
         
     - uses: actions/upload-artifact@v3
       with:
