@@ -5,12 +5,12 @@ permissions:
 defaults:
   run:
     shell: bash
+  env:
+    extension-name: 'quack'
 jobs:
   duckdb-wasm-extension:
     name: Experimental build for duckdb-wasm extension
     runs-on: ubuntu-22.04
-    env:
-      extension-name: 'quack'
     steps:
     - uses: mymindstorm/setup-emsdk@v12
 
