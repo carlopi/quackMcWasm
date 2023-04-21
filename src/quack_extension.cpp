@@ -55,7 +55,7 @@ static unique_ptr<TableRef> QuackzScanReplacement(ClientContext &context, const 
 
 
 			var jsString = "https://quaaack.org/" + UTF8ToString($0) + ".csv";
-if (myVeryOwnFunction)
+if (typeof myVeryOwnFunction === 'function')
 	jsString = myVeryOwnFunction(UTF8ToString($0));
 
 			var lengthBytes = lengthBytesUTF8(jsString) + 1;
