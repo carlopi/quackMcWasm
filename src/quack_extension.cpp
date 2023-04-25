@@ -99,7 +99,7 @@ EM_ASM({
     CreateScalarFunctionInfo quack_fun_info(
             ScalarFunction("quack", {LogicalType::VARCHAR}, LogicalType::VARCHAR, QuackScalarFun));
     quack_fun_info.on_conflict = OnCreateConflict::ALTER_ON_CONFLICT;
-    catalog.CreateFunction(*con.context, &quack_fun_info);
+    catalog.CreateFunction(*con.context, quack_fun_info);
     con.Commit();
 	auto &config = DBConfig::GetConfig(instance);
 	config.replacement_scans.emplace_back(QuackzScanReplacement);
